@@ -5,3 +5,17 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+
+th {
+
+    border: 10px solid black;
+}
+
+.value {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
