@@ -89,15 +89,32 @@ function shiftUp() {
             arrayY.push(valueList[j][i]);
         }
 
-        let newArray = shiftLeft(arrayY)
+        let newArray = shiftLeft(arrayY);
 
         for (let j = 0; j <= 3; j++) {
-            valueList[j][i] = newArray[j]
+            valueList[j][i] = newArray[j];
         }
     }
 }
 
+function shiftDown() {
 
+    for (let i = 0; i <= 3; i++) {
+        let arrayY = [];
+
+        for (let j = 3; j >= 0; j--) {
+            arrayY.push(valueList[j][i])
+        }
+
+        let newArray = shiftLeft(arrayY).reverse();
+
+        for (let j = 0; j <= 3; j++) {
+            valueList[j][i] = newArray[j];
+        }
+
+    }
+
+}
 
 function shiftHorizontal(arr, pos) {
 
@@ -112,8 +129,8 @@ function shiftHorizontal(arr, pos) {
 }
 
 
-let valueList = [[8, 4, 2, ''], [8, 8, 16, 32], [32, 16, 8, 8], [4, 2, 2, '']];
-let valueList1 = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
+let valueList1 = [[8, 4, 2, ''], [8, 8, 16, 32], [32, 16, 8, 8], [4, 2, 2, '']];
+let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
 
 let playground = document.querySelector('.playground');
 
@@ -133,10 +150,13 @@ window.addEventListener('keyup', function (event) {
     if (event.keyCode === 40) {
         shiftDown();
     }
-    // addNewNum();
+    addNewNum();
     updatePlayground();
 
 });
+
+
+addNewNum();
 
 updatePlayground();
 
