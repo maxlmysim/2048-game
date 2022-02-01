@@ -24,6 +24,8 @@ function updatePlayground() {
     valueList.forEach((arrayX, x) => {
         arrayX.forEach((item, y) => {
             playground.rows[x].cells[y].children[0].textContent = item;
+            playground.rows[x].cells[y].children[0].dataset.value = item;
+
         });
     });
 
