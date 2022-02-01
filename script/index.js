@@ -80,6 +80,25 @@ function shiftRight(rightArray) {
 }
 
 
+function shiftUp() {
+
+    for (let i = 0; i <= 3; i++) {
+        let arrayY = [];
+
+        for (let j = 0; j <= 3; j++) {
+            arrayY.push(valueList[j][i]);
+        }
+
+        let newArray = shiftLeft(arrayY)
+
+        for (let j = 0; j <= 3; j++) {
+            valueList[j][i] = newArray[j]
+        }
+    }
+}
+
+
+
 function shiftHorizontal(arr, pos) {
 
     for (let i = 0; i < arr.length; i++) {
@@ -101,18 +120,22 @@ let playground = document.querySelector('.playground');
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
         valueList.forEach(item => shiftLeft(item));
-        addNewNum();
-        updatePlayground();
+    }
+
+    if (event.keyCode === 38) {
+        shiftUp();
     }
 
     if (event.keyCode === 39) {
         valueList.forEach(item => shiftRight(item));
-        addNewNum();
-
-
-        updatePlayground();
-
     }
+
+    if (event.keyCode === 40) {
+        shiftDown();
+    }
+    // addNewNum();
+    updatePlayground();
+
 });
 
 updatePlayground();
