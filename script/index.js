@@ -54,37 +54,41 @@ function shiftLeft(arrayX) {
 
     for (let i = 0; i < arrayX.length; i++) {
 
-        if (arrayX[i] !== '' && arrayX[i-1] === '') {
-            shiftHorizontal(arrayX, i, 'left');
+        if (arrayX[i] !== '' && arrayX[i - 1] === '') {
+            shiftHorizontal(arrayX, i);
         }
 
     }
-    return arrayX
 
+    return arrayX;
 
 
 }
 
-function shiftRight() {
-
-    let arrayX = [];
+function shiftRight(rightArray) {
+    let arrayLeft = [];
 
     for (let i = 3; i >= 0; i--) {
-
+        arrayLeft.push(rightArray[i]);
     }
 
+    let newArray = shiftLeft(arrayLeft).reverse();
+
+    for (let i = 0; i <= 3; i++) {
+        rightArray[i] = newArray[i];
+    }
 }
 
 
-function shiftHorizontal(arr, pos, where) {
+function shiftHorizontal(arr, pos) {
 
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] === '') {
-                arr[i] = arr[pos];
-                arr[pos] = '';
-                return;
-            }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === '') {
+            arr[i] = arr[pos];
+            arr[pos] = '';
+            return;
         }
+    }
 
 }
 
@@ -97,15 +101,17 @@ let playground = document.querySelector('.playground');
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
         valueList.forEach(item => shiftLeft(item));
-        addNewNum()
-        updatePlayground()
+        addNewNum();
+        updatePlayground();
     }
 
     if (event.keyCode === 39) {
-        shiftRight(0);
-        shiftRight(1);
-        shiftRight(2);
-        shiftRight(3);
+        valueList.forEach(item => shiftRight(item));
+        addNewNum();
+
+
+        updatePlayground();
+
     }
 });
 
