@@ -4,6 +4,7 @@ function addNewNum() {
         let checkFull = valueList.some((arrayX) => arrayX.includes(''));
 
         if (!checkFull) {
+            isMove()
             break;
         }
 
@@ -15,8 +16,6 @@ function addNewNum() {
             break;
         }
     }
-
-    updatePlayground();
 
 }
 
@@ -129,6 +128,7 @@ function shiftHorizontal(arr, pos) {
 }
 
 
+
 let valueList1 = [[8, 4, 2, ''], [8, 8, 16, 32], [32, 16, 8, 8], [4, 2, 2, '']];
 let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
 
@@ -137,21 +137,28 @@ let playground = document.querySelector('.playground');
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
         valueList.forEach(item => shiftLeft(item));
+        addNewNum();
+        updatePlayground();
     }
 
     if (event.keyCode === 38) {
         shiftUp();
+        addNewNum();
+        updatePlayground();
     }
 
     if (event.keyCode === 39) {
         valueList.forEach(item => shiftRight(item));
+        addNewNum();
+        updatePlayground();
     }
 
     if (event.keyCode === 40) {
         shiftDown();
+        addNewNum();
+        updatePlayground();
     }
-    addNewNum();
-    updatePlayground();
+
 
 });
 
