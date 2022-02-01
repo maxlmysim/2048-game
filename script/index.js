@@ -4,7 +4,7 @@ function addNewNum() {
         let checkFull = valueList.some((arrayX) => arrayX.includes(''));
 
         if (!checkFull) {
-            isMove()
+            console.log(isMove());
             break;
         }
 
@@ -102,7 +102,7 @@ function shiftDown() {
         let arrayY = [];
 
         for (let j = 3; j >= 0; j--) {
-            arrayY.push(valueList[j][i])
+            arrayY.push(valueList[j][i]);
         }
 
         let newArray = shiftLeft(arrayY).reverse();
@@ -127,9 +127,27 @@ function shiftHorizontal(arr, pos) {
 
 }
 
+function isMove() {
+    for (let i = 0; i < 4; i++) {
+        for (let j = 1; j < 4; j++) {
+
+            if (valueList[i][j] === valueList[i][j - 1]) return true;
+        }
+    }
 
 
-let valueList1 = [[8, 4, 2, ''], [8, 8, 16, 32], [32, 16, 8, 8], [4, 2, 2, '']];
+    for (let i = 0; i < 4; i++) {
+        for (let j = 1; j < 4; j++) {
+
+            if (valueList[j][i] === valueList[j - 1][i]) return true;
+
+        }
+    }
+return false
+}
+
+
+// let valueList = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
 let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
 
 let playground = document.querySelector('.playground');
