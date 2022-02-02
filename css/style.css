@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    font-size: 3vh;
 }
 
 *, *:before, *:after {
@@ -12,6 +13,43 @@ body {
 
 .header {
     height: 10vh;
+    display: flex;
+    justify-content:space-evenly;;
+    align-items: center;
+}
+
+.main-title {
+    color:#776e65;
+    font-size: 2.5rem;
+}
+
+.header__score-container {
+    display: flex;
+}
+
+.current-score, .best-score {
+    display: flex;
+    justify-content:  space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color:#bbada0;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: 0.9rem;
+}
+
+.best-score {
+    margin-left: 10px;
+}
+
+.current-score-title, .best-score-title {
+    color: #f1f8fc;
+}
+
+.current-score-value, .best-score-value {
+    font-size: 1.1em;
+    color: #ffffff;
 }
 
 .main {
@@ -27,25 +65,31 @@ body {
 }
 
 th {
-    border: 10px solid #9b968d;
+    border: 2vh solid #9b968d;
 }
 
 .value {
-    height: 100px;
-    width: 100px;
+    /*height: 100px;*/
+    /*width: 100px;*/
+    height: 16vh;
+    width: 16vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+    font-size: 2rem;
     color: #ffffff;
+    font-weight: bold;
+    background-color: #cdc1b4;
 }
 
 [data-value="2"] {
     background-color: #ebc989;
+    color: #776e65;
 }
 
 [data-value="4"] {
     background-color: #eeba57;
+    color: #776e65;
 }
 
 [data-value="8"] {
@@ -91,13 +135,13 @@ th {
 
 
 .footer {
-    border-top: 7px solid black;
+    border-top: 7px solid #776e65;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     font-size: 20px;
-    color: black;
+    color: #776e65;
 }
 
 .footer__container {
@@ -112,7 +156,7 @@ th {
 
 .link {
     text-decoration: none;
-    color: black;
+    color: #776e65;
 }
 
 .link:hover {
@@ -128,7 +172,7 @@ th {
 }
 
 .rss-logo {
-    fill: black;
+    fill: #776e65;
     height: 5vh;
     width: 15vh;
 }

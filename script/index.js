@@ -18,13 +18,6 @@ function addNewNum() {
 
 
     while (true) {
-        let checkFull = valueList.some((arrayX) => arrayX.includes(''));
-
-        if (!checkFull) {
-            console.log(isMove());
-            break;
-        }
-
         let firstNum = randomNumber();
         let secondNum = randomNumber();
 
@@ -33,6 +26,11 @@ function addNewNum() {
             break;
         }
     }
+
+    console.log(isMove());
+
+
+// fill preValueList
 
     for (let i = 0; i < valueList.length; i++) {
 
@@ -73,6 +71,7 @@ function shiftLeft(arrayX) {
 
             if (arrayX[i] === arrayX[j]) {
                 arrayX[i] += arrayX[j];
+                changeScore(arrayX[i]);
                 arrayX[j] = '';
                 break;
             }
@@ -89,6 +88,17 @@ function shiftLeft(arrayX) {
 
     return arrayX;
 
+
+}
+
+function changeScore(sum) {
+    currentScore += sum;
+    currentScoreCell.textContent = currentScore;
+
+    if (currentScore > bestScore) {
+        bestScore = currentScore;
+        bestScoreCell.textContent = bestScore;
+    }
 
 }
 
@@ -158,7 +168,7 @@ function shiftHorizontal(arr, pos) {
 function isMove() {
     for (let i = 0; i < 4; i++) {
         for (let j = 1; j < 4; j++) {
-
+            if (valueList[i][j] === '' || valueList[i][j - 1] === '') return true;
             if (valueList[i][j] === valueList[i][j - 1]) return true;
         }
     }
@@ -166,7 +176,7 @@ function isMove() {
 
     for (let i = 0; i < 4; i++) {
         for (let j = 1; j < 4; j++) {
-
+            if (valueList[j][i] === '' || valueList[j - 1][i] === '') return true;
             if (valueList[j][i] === valueList[j - 1][i]) return true;
 
         }
@@ -175,11 +185,17 @@ function isMove() {
 }
 
 
-let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
+let valueList = [[2, 4, 8, 16], [32, 64, 128, 256], [512, 1024, 2048, 4096], ['', '', '', '']];
+// let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
 let preValueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
-
+let currentScore = 0;
+let bestScore = 0;
+let listScoreRecent = [];
+let listBestScoreRecent = [];
 
 let playground = document.querySelector('.playground');
+let currentScoreCell = document.querySelector('.current-score-value');
+let bestScoreCell = document.querySelector('.best-score-value');
 
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
@@ -214,4 +230,6 @@ addNewNum();
 updatePlayground();
 
 
-
+// setInterval(()=> {
+//     console.log(`currentScore: ${currentScore}    BestScore: ${bestScore}`);
+// })
