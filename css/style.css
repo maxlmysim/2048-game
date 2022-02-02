@@ -6,9 +6,28 @@ html {
     box-sizing: inherit;
 }
 
-th {
+body {
+    background-color: #faf8ef;
+}
 
-    border: 10px solid black;
+.header {
+    height: 10vh;
+}
+
+.main {
+    height: 80vh;
+}
+
+.playground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+th {
+    border: 10px solid #9b968d;
 }
 
 .value {
@@ -18,4 +37,98 @@ th {
     justify-content: center;
     align-items: center;
     font-size: 35px;
+    color: #ffffff;
+}
+
+[data-value="2"] {
+    background-color: #ebc989;
+}
+
+[data-value="4"] {
+    background-color: #eeba57;
+}
+
+[data-value="8"] {
+    background-color: #f7a253;
+}
+
+[data-value="16"] {
+    background-color: #fe8a45;
+}
+
+[data-value="32"] {
+    background-color: #ff714b;
+}
+
+[data-value="64"] {
+    background-color: #fd5d5c;
+}
+
+[data-value="128"] {
+    background-color: #f7609e;
+}
+
+[data-value="256"] {
+    background-color: #e34ed4;
+}
+
+[data-value="512"] {
+    background-color: #ba67fe;
+}
+
+[data-value="1024"] {
+    background-color: #897ffe;
+}
+
+[data-value="2048"] {
+    background-color: #897ffe;
+}
+
+[data-value="4096"] {
+    background-color: #77bdec;
+}
+
+
+
+.footer {
+    border-top: 7px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 20px;
+    color: black;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 6.5vh;
+    width: calc(100% - 60px);
+    max-width: 1600px;
+    align-items: center
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    fill: #ffa500;
+    color: #ffa500;
+}
+
+.footer__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+}
+
+.rss-logo {
+    fill: black;
+    height: 5vh;
+    width: 15vh;
 }
