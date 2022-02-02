@@ -1,4 +1,21 @@
+function checkMove() {
+
+
+    for (let i = 0; i < valueList.length; i++) {
+
+        for (let j = 0; j < valueList[i].length; j++) {
+
+            if (preValueList[i][j] !== valueList[i][j]) {
+                return true;
+            }
+
+        }
+    }
+    return false;
+}
+
 function addNewNum() {
+
 
     while (true) {
         let checkFull = valueList.some((arrayX) => arrayX.includes(''));
@@ -14,6 +31,15 @@ function addNewNum() {
         if (valueList[firstNum][secondNum] === '') {
             valueList[firstNum][secondNum] = 2;
             break;
+        }
+    }
+
+    for (let i = 0; i < valueList.length; i++) {
+
+        for (let j = 0; j < valueList[i].length; j++) {
+
+            preValueList[i][j] = valueList[i][j];
+
         }
     }
 
@@ -145,46 +171,46 @@ function isMove() {
 
         }
     }
-return false
+    return false;
 }
 
 
-// let valueList = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
 let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
+let preValueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
+
 
 let playground = document.querySelector('.playground');
 
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
         valueList.forEach(item => shiftLeft(item));
-        addNewNum();
-        updatePlayground();
     }
 
     if (event.keyCode === 38) {
         shiftUp();
-        addNewNum();
-        updatePlayground();
     }
 
     if (event.keyCode === 39) {
         valueList.forEach(item => shiftRight(item));
-        addNewNum();
-        updatePlayground();
     }
 
     if (event.keyCode === 40) {
         shiftDown();
+    }
+
+    if (event.keyCode === 37 ||
+        event.keyCode === 38 ||
+        event.keyCode === 39 ||
+        event.keyCode === 40) {
+
+        if (!checkMove()) return;
         addNewNum();
         updatePlayground();
     }
-
-
 });
 
 
 addNewNum();
-
 updatePlayground();
 
 
