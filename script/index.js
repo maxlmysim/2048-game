@@ -27,7 +27,7 @@ function addNewNum() {
         }
     }
 
-    console.log(isMove());
+    isMove();
 
 
 // fill preValueList
@@ -181,9 +181,34 @@ function isMove() {
 
         }
     }
-    return false;
+
+    gameOverTitle.style.display = 'flex';
+
+    listBestScoreRecent.push(bestScore);
+    listBestScoreRecent.sort((a, b) => b - a).length = 10;
+    localStorage.setItem('listBestScoreRecent', listBestScoreRecent);
+
 }
 
+function restartGame() {
+    valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
+    currentScore = 0;
+    gameOverTitle.style.display = 'none';
+
+    addNewNum();
+    updatePlayground();
+    changeScore(0);
+}
+
+function loadLocalStorage() {
+    let listBest = localStorage.getItem('listBestScoreRecent');
+
+    if (listBest) {
+        listBestScoreRecent = [...listBest.split(',')];
+        bestScoreCell.textContent = +listBestScoreRecent[0]
+        bestScore = +listBestScoreRecent[0]
+    }
+}
 
 let valueList = [[2, 4, 8, 16], [32, 64, 128, 256], [512, 1024, 2048, 4096], ['', '', '', '']];
 // let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
@@ -193,9 +218,14 @@ let bestScore = 0;
 let listScoreRecent = [];
 let listBestScoreRecent = [];
 
+console.log(undefined < 5);
+
+let gameOverTitle = document.querySelector('.game-over-title');
 let playground = document.querySelector('.playground');
+let restartBtn = document.querySelector('.btn-new-game');
 let currentScoreCell = document.querySelector('.current-score-value');
 let bestScoreCell = document.querySelector('.best-score-value');
+
 
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
@@ -225,10 +255,13 @@ window.addEventListener('keyup', function (event) {
     }
 });
 
+restartBtn.addEventListener('click', restartGame);
 
+
+
+loadLocalStorage();
 addNewNum();
 updatePlayground();
-
 
 // setInterval(()=> {
 //     console.log(`currentScore: ${currentScore}    BestScore: ${bestScore}`);
