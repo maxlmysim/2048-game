@@ -182,15 +182,22 @@ function isMove() {
         }
     }
 
+    endGame();
+}
+
+function endGame() {
     gameOverTitle.style.display = 'flex';
 
-    listBestScoreRecent.push(bestScore);
-    listBestScoreRecent.sort((a, b) => b - a).length = 10;
-    localStorage.setItem('listBestScoreRecent', listBestScoreRecent);
+    if (!listBestScoreRecent.includes(bestScore)) {
 
+        listBestScoreRecent.push(bestScore);
+        listBestScoreRecent.sort((a, b) => b - a).length = 10;
+        localStorage.setItem('listBestScoreRecent', listBestScoreRecent);
+    }
 }
 
 function restartGame() {
+    endGame();
     valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
     currentScore = 0;
     gameOverTitle.style.display = 'none';
@@ -200,13 +207,21 @@ function restartGame() {
     changeScore(0);
 }
 
+function showBestScore() {
+    document.querySelector('.container-best-score').classList.toggle('active')
+    document.querySelectorAll('.best-position')
+        .forEach((item, index) => {
+            item.textContent = listBestScoreRecent[index];
+        });
+}
+
 function loadLocalStorage() {
     let listBest = localStorage.getItem('listBestScoreRecent');
 
     if (listBest) {
-        listBestScoreRecent = [...listBest.split(',')];
-        bestScoreCell.textContent = +listBestScoreRecent[0]
-        bestScore = +listBestScoreRecent[0]
+        listBest.split(',').forEach((item) => listBestScoreRecent.push(+item))
+        bestScoreCell.textContent = +listBestScoreRecent[0];
+        bestScore = +listBestScoreRecent[0];
     }
 }
 
@@ -225,7 +240,8 @@ let playground = document.querySelector('.playground');
 let restartBtn = document.querySelector('.btn-new-game');
 let currentScoreCell = document.querySelector('.current-score-value');
 let bestScoreCell = document.querySelector('.best-score-value');
-
+let bestScoreBlock = document.querySelector('.best-score');
+let btnCloseBestScore = document.querySelector('.btn-close-best-score')
 
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
@@ -256,8 +272,8 @@ window.addEventListener('keyup', function (event) {
 });
 
 restartBtn.addEventListener('click', restartGame);
-
-
+bestScoreBlock.addEventListener('click', showBestScore);
+btnCloseBestScore.addEventListener('click', showBestScore)
 
 loadLocalStorage();
 addNewNum();
