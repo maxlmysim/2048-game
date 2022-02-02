@@ -1,6 +1,5 @@
 function checkMove() {
 
-
     for (let i = 0; i < valueList.length; i++) {
 
         for (let j = 0; j < valueList[i].length; j++) {
@@ -16,19 +15,18 @@ function checkMove() {
 
 function addNewNum() {
 
-
     while (true) {
         let firstNum = randomNumber();
         let secondNum = randomNumber();
 
         if (valueList[firstNum][secondNum] === '') {
+
             valueList[firstNum][secondNum] = 2;
             break;
         }
     }
 
     isMove();
-
 
 // fill preValueList
 
@@ -37,10 +35,8 @@ function addNewNum() {
         for (let j = 0; j < valueList[i].length; j++) {
 
             preValueList[i][j] = valueList[i][j];
-
         }
     }
-
 }
 
 function updatePlayground() {
@@ -49,10 +45,8 @@ function updatePlayground() {
         arrayX.forEach((item, y) => {
             playground.rows[x].cells[y].children[0].textContent = item;
             playground.rows[x].cells[y].children[0].dataset.value = item;
-
         });
     });
-
 }
 
 function randomNumber() {
@@ -87,8 +81,6 @@ function shiftLeft(arrayX) {
     }
 
     return arrayX;
-
-
 }
 
 function changeScore(sum) {
@@ -99,7 +91,6 @@ function changeScore(sum) {
         bestScore = currentScore;
         bestScoreCell.textContent = bestScore;
     }
-
 }
 
 function shiftRight(rightArray) {
@@ -188,9 +179,9 @@ function isMove() {
 function endGame() {
     gameOverTitle.style.display = 'flex';
 
-    if (!listBestScoreRecent.includes(bestScore)) {
+    if (!listBestScoreRecent.includes(currentScore)) {
 
-        listBestScoreRecent.push(bestScore);
+        listBestScoreRecent.push(currentScore);
         listBestScoreRecent.sort((a, b) => b - a).length = 10;
         localStorage.setItem('listBestScoreRecent', listBestScoreRecent);
     }
@@ -232,8 +223,6 @@ let currentScore = 0;
 let bestScore = 0;
 let listScoreRecent = [];
 let listBestScoreRecent = [];
-
-console.log(undefined < 5);
 
 let gameOverTitle = document.querySelector('.game-over-title');
 let playground = document.querySelector('.playground');
@@ -279,6 +268,3 @@ loadLocalStorage();
 addNewNum();
 updatePlayground();
 
-// setInterval(()=> {
-//     console.log(`currentScore: ${currentScore}    BestScore: ${bestScore}`);
-// })
