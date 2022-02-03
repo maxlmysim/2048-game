@@ -1,19 +1,17 @@
-function checkMove() {
+function checkMovement() {    //check if there was movement
 
     for (let i = 0; i < valueList.length; i++) {
-
         for (let j = 0; j < valueList[i].length; j++) {
 
             if (preValueList[i][j] !== valueList[i][j]) {
                 return true;
             }
-
         }
     }
     return false;
 }
 
-function addNewNum() {
+function addNewNum() {  // add new block with num = 2
 
     while (true) {
         let firstNum = randomNumber();
@@ -53,14 +51,13 @@ function randomNumber() {
     return Math.floor(Math.random() * 4);
 }
 
-function shiftLeft(arrayX) {
+function shiftLeft(arrayX) {  //move to the left
 
     for (let i = 0; i < arrayX.length; i++) {
 
-        for (let j = i + 1; j < arrayX.length; j++) {
+        for (let j = i + 1; j < arrayX.length; j++) {  // checking the possibility of summation
 
             if (arrayX[j] === '') continue;
-
             if (arrayX[i] !== arrayX[j]) break;
 
             if (arrayX[i] === arrayX[j]) {
@@ -72,7 +69,7 @@ function shiftLeft(arrayX) {
         }
     }
 
-    for (let i = 0; i < arrayX.length; i++) {
+    for (let i = 0; i < arrayX.length; i++) { // move to the left
 
         if (arrayX[i] !== '' && arrayX[i - 1] === '') {
             shiftHorizontal(arrayX, i);
@@ -149,9 +146,7 @@ function shiftDown() {
         for (let j = 0; j <= 3; j++) {
             valueList[j][i] = newArray[j];
         }
-
     }
-
 }
 
 function shiftHorizontal(arr, pos) {
@@ -163,10 +158,9 @@ function shiftHorizontal(arr, pos) {
             return;
         }
     }
-
 }
 
-function isMove() {
+function isMove() {  //check if there are moves?
     for (let i = 0; i < 4; i++) {
         for (let j = 1; j < 4; j++) {
             if (valueList[i][j] === '' || valueList[i][j - 1] === '') return true;
@@ -174,12 +168,10 @@ function isMove() {
         }
     }
 
-
     for (let i = 0; i < 4; i++) {
         for (let j = 1; j < 4; j++) {
             if (valueList[j][i] === '' || valueList[j - 1][i] === '') return true;
             if (valueList[j][i] === valueList[j - 1][i]) return true;
-
         }
     }
 
@@ -231,7 +223,6 @@ let valueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', 
 let preValueList = [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']];
 let currentScore = 0;
 let bestScore = 0;
-let listScoreRecent = [];
 let listBestScoreRecent = [];
 
 let gameOverTitle = document.querySelector('.game-over-title');
@@ -264,7 +255,7 @@ window.addEventListener('keyup', function (event) {
         event.keyCode === 39 ||
         event.keyCode === 40) {
 
-        if (!checkMove()) return;
+        if (!checkMovement()) return;
         addNewNum();
         updatePlayground();
     }
