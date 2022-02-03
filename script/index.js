@@ -84,6 +84,16 @@ function shiftLeft(arrayX) {
 }
 
 function changeScore(sum) {
+    let addScore = document.querySelector('.plus-score');
+
+    addScore.textContent = `+${sum}`
+    addScore.classList.add('active');
+
+    setTimeout(()=> {
+        addScore.classList.remove('active');
+    },700)
+
+
     currentScore += sum;
     currentScoreCell.textContent = currentScore;
 
@@ -199,7 +209,7 @@ function restartGame() {
 }
 
 function showBestScore() {
-    document.querySelector('.container-best-score').classList.toggle('active')
+    document.querySelector('.container-best-score').classList.toggle('active');
     document.querySelectorAll('.best-position')
         .forEach((item, index) => {
             item.textContent = listBestScoreRecent[index];
@@ -210,7 +220,7 @@ function loadLocalStorage() {
     let listBest = localStorage.getItem('listBestScoreRecent');
 
     if (listBest) {
-        listBest.split(',').forEach((item) => listBestScoreRecent.push(+item))
+        listBest.split(',').forEach((item) => listBestScoreRecent.push(+item));
         bestScoreCell.textContent = +listBestScoreRecent[0];
         bestScore = +listBestScoreRecent[0];
     }
@@ -230,7 +240,7 @@ let restartBtn = document.querySelector('.btn-new-game');
 let currentScoreCell = document.querySelector('.current-score-value');
 let bestScoreCell = document.querySelector('.best-score-value');
 let bestScoreBlock = document.querySelector('.best-score');
-let btnCloseBestScore = document.querySelector('.btn-close-best-score')
+let btnCloseBestScore = document.querySelector('.btn-close-best-score');
 
 window.addEventListener('keyup', function (event) {
     if (event.keyCode === 37) {
@@ -262,7 +272,7 @@ window.addEventListener('keyup', function (event) {
 
 restartBtn.addEventListener('click', restartGame);
 bestScoreBlock.addEventListener('click', showBestScore);
-btnCloseBestScore.addEventListener('click', showBestScore)
+btnCloseBestScore.addEventListener('click', showBestScore);
 
 loadLocalStorage();
 addNewNum();

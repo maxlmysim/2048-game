@@ -1,3 +1,15 @@
+@keyframes occurrence {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    100% {
+        height: 16vh;
+        width: 16vh;
+    }
+}
+
 html {
     box-sizing: border-box;
     font-size: 3vh;
@@ -36,7 +48,7 @@ body {
 }
 
 .btn-new-game:hover {
-    box-shadow: inset 0 0 20px #bbada0;
+    box-shadow: 0 0 10px #8f7a66;
 }
 
 .header__score-container {
@@ -53,11 +65,33 @@ body {
     width: 100px;
     height: 50px;
     font-size: 0.9rem;
+    position: relative;
+}
+
+.plus-score {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    transition: top 0.75s, opacity 0.75s;
+    visibility: hidden;
+    opacity: 1;
+}
+
+.plus-score.active {
+    visibility: visible;
+    opacity: 0.3;
+    top: 0;
 }
 
 .best-score {
     margin-left: 10px;
     cursor: pointer;
+}
+
+.best-score:hover {
+    box-shadow: 0 0 10px #bbada0;
 }
 
 .current-score-title, .best-score-title {
@@ -146,6 +180,11 @@ th {
     color: #ffffff;
     font-weight: bold;
     background-color: #cdc1b4;
+}
+
+.value:hover {
+    /*box-shadow: inset 0px 0px 20px white;*/
+
 }
 
 [data-value="2"] {
