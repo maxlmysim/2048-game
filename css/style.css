@@ -101,7 +101,7 @@ body {
     height: 80vh;
 }
 
-.container-end-game, .container-best-score {
+.container-end-game, .container-best-score, .container-win-game {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -112,12 +112,27 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.game-over-title {
+.game-over-title, .win-game_title {
     display: none;
     font-size: 4rem;
     color: #52463a;
     z-index: 1;
     opacity: 1;
+}
+
+.container-win-game {
+    background-color: #bbada0;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 3px solid black;
+    width: 400px;
+    height: 200px;
+    display: none;
+    justify-content: space-around;
+}
+
+.win-game_title {
+    display: block;
 }
 
 .container-best-score {

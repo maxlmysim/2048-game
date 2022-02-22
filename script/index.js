@@ -86,10 +86,11 @@ function changeScore(sum) {
     addScore.textContent = `+${sum}`
     addScore.classList.add('active');
 
+    if(currentScore + sum >= 2048) gameWin(sum);
+
     setTimeout(()=> {
         addScore.classList.remove('active');
     },700)
-
 
     currentScore += sum;
     currentScoreCell.textContent = currentScore;
@@ -98,6 +99,11 @@ function changeScore(sum) {
         bestScore = currentScore;
         bestScoreCell.textContent = bestScore;
     }
+}
+
+function gameWin(score) {
+    document.querySelector('.container-win-game').style.display = 'flex';
+    document.querySelector('.win-game_score').textContent = `Score: ${score}`
 }
 
 function shiftRight(rightArray) {
@@ -195,6 +201,8 @@ function restartGame() {
     currentScore = 0;
     gameOverTitle.style.display = 'none';
 
+    document.querySelector('.container-win-game').style.display = 'none';
+
     addNewNum();
     updatePlayground();
     changeScore(0);
@@ -269,3 +277,4 @@ loadLocalStorage();
 addNewNum();
 updatePlayground();
 
+console.log('Чтобы посмотреть лучшие резуйльтаты - нажми на блок Best score')
