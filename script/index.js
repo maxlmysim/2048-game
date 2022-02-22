@@ -83,14 +83,12 @@ function shiftLeft(arrayX) {  //move to the left
 function changeScore(sum) {
     let addScore = document.querySelector('.plus-score');
 
-    addScore.textContent = `+${sum}`
+    addScore.textContent = `+${sum}`;
     addScore.classList.add('active');
 
-    if(currentScore + sum >= 2048) gameWin(sum);
-
-    setTimeout(()=> {
+    setTimeout(() => {
         addScore.classList.remove('active');
-    },700)
+    }, 700);
 
     currentScore += sum;
     currentScoreCell.textContent = currentScore;
@@ -101,9 +99,11 @@ function changeScore(sum) {
     }
 }
 
-function gameWin(score) {
-    document.querySelector('.container-win-game').style.display = 'flex';
-    document.querySelector('.win-game_score').textContent = `Score: ${score}`
+function checkWin() {
+    if(valueList.some(item => item.some(item => item === 2048))) {
+        document.querySelector('.container-win-game').style.display = 'flex';
+        document.querySelector('.win-game_score').textContent = `Score: ${currentScore}`
+    }
 }
 
 function shiftRight(rightArray) {
@@ -266,6 +266,7 @@ window.addEventListener('keyup', function (event) {
         if (!checkMovement()) return;
         addNewNum();
         updatePlayground();
+        checkWin();
     }
 });
 
@@ -277,4 +278,4 @@ loadLocalStorage();
 addNewNum();
 updatePlayground();
 
-console.log('Чтобы посмотреть лучшие резуйльтаты - нажми на блок Best score')
+console.log('Чтобы посмотреть лучшие резуйльтаты - нажми на блок Best score');
