@@ -278,4 +278,4 @@ loadLocalStorage();
 addNewNum();
 updatePlayground();
 
-console.log('Чтобы посмотреть лучшие резуйльтаты - нажми на блок Best score');
+console.log('Чтобы посмотреть лучшие результаты - нажми на блок Best score');
